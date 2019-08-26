@@ -11,7 +11,7 @@
         <h4>{{ group.label }} {{ kg }}</h4>
         <ul>
             <li v-for="(item, ki) in group.links" :key="ki">
-                <a :href="item.url"> {{ item.label }} </a>
+                <a :href="item.url" target="_blank"> {{ item.label }} </a>
             </li>
         </ul>
     </div>
