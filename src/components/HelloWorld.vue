@@ -6,6 +6,15 @@
       check out the
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
     </p>
+
+    <div v-for="group in groups" :key="kg"> 
+        <h4>{{ group.label }} {{ kg }}</h4>
+        <ul>
+            <li v-for="(item, ki) in group.links" :key="ki">
+                <a :href="item.url"> {{ item.label }} </a>
+            </li>
+        </ul>
+    </div>
   </div>
 </template>
 
@@ -13,13 +22,14 @@
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String
+    msg: String,
+    groups: Object,
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss">
 h3 {
   margin: 40px 0 0;
 }
@@ -28,7 +38,7 @@ ul {
   padding: 0;
 }
 li {
-  display: inline-block;
+  //display: inline-block;
   margin: 0 10px;
 }
 a {
