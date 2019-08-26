@@ -51,6 +51,7 @@ export default {
                     this.groups[group].links.push({
                         label: title,
                         url: url,
+                        show: false,
                     })
                     group = false
                     title = false

@@ -8,7 +8,7 @@
     </p>
 
     <div v-for="group in groups" :key="kg"> 
-        <h4>{{ group.label }} {{ kg }}</h4>
+        <h4>{{ group.label }} {{ kg }} <span> {{ group.show ? 'Hide' : 'Show' }} </span></h4>
         <ul>
             <li v-for="(item, ki) in group.links" :key="ki">
                 <a :href="item.url" target="_blank"> {{ item.label }} </a>
