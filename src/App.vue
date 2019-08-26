@@ -1,7 +1,10 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="bmviewer">
+    <div>
+        <textarea v-model="bookmark_text" rows="10"></textarea>
+        <p><small>Length {{ bookmark_text.length }}</small></p>
+    </div>
+    <HelloWorld msg="asdasd asdasdasd "/>
   </div>
 </template>
 
@@ -12,17 +15,30 @@ export default {
   name: 'app',
   components: {
     HelloWorld
-  }
+  },
+  data: () => {
+    return {
+        'bookmark_text': '',
+    }
+  },
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+<style lang="scss">
+#bmviewer {
+  font-family: 'Purisa', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+
+    textarea {
+        width: 100%;
+    }
+
+  a {
+    color: red;
+  }
 }
 </style>
