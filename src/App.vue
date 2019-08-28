@@ -5,7 +5,9 @@
         <p><small>Length {{ bookmark_text.length }}</small></p>
         <input type="file" ref="extFile" @change="loadFile"/> 
         <button @click="loadGroups">Load</button>
+        <button @click="pippo">Pippo</button>
     </div>
+
     <HelloWorld msg="asdasd asdasdasd " :groups="groups"/>
   </div>
 </template>
@@ -67,6 +69,21 @@ export default {
             reader.onload = ev => {
                 this.bookmark_text = ev.target.result
             }
+        },
+
+        pippo: function() {
+            // axios - fare cosi per parametri x-www-form-encoded
+            // altrimenti invia dati come JSON e in php è necessario $_POST = json_decode(file_get_contents('php://input'), true);
+            let params = new URLSearchParams()
+            params.append('storeme', 'FIXME')
+            params.append('save', 'pippo.txt')
+            params.append('overwrite', '1')
+            params.append('data', this.bookmark_text)
+
+            this.axios.post('http://happystore.altervista.org/storeme/index.php', params)
+                .then(function(response) {
+                    console.log('Risposta', response)
+                })
         },
     },
 }
