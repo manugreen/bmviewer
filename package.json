@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "postbuild": "rm dist/js/*.map",
     "lint": "vue-cli-service lint",
     "deployghp": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },

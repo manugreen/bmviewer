@@ -7,7 +7,7 @@
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
     </p>
 
-    <div v-for="group in groups" :key="kg"> 
+    <div v-for="(group, kg) in groups" :key="kg"> 
         <h4>{{ group.label }} {{ kg }} <span> {{ group.show ? 'Hide' : 'Show' }} </span></h4>
         <ul>
             <li v-for="(item, ki) in group.links" :key="ki">

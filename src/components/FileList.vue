@@ -6,7 +6,7 @@
         </div>
         <div>
             <ul>
-                <li v-for="file in files" :key="i"> {{ file }} </li>
+                <li v-for="(file, i) in files" :key="i"> {{ file }} <i class="fas fa-download" @click="downloadFile(file)"></i></li>
             </ul>
         </div>
     </div>
@@ -46,6 +46,25 @@ export default {
                     .then(function(response) {
                         if (response.data.status == 200) {
                             _self.files = response.data.files
+                        }
+                    })
+            }
+        },
+
+        downloadFile(file) {
+            if (this.$root.$data.password.length > 0) {
+                // axios - fare cosi per parametri x-www-form-encoded
+                // altrimenti invia dati come JSON e in php è necessario $_POST = json_decode(file_get_contents('php://input'), true);
+                let _self = this
+                let params = new URLSearchParams()
+                params.append('storeme', this.$root.$data.password)
+                params.append('get', file)
+
+                this.axios.post(this.$root.happy_store_url, params)
+                    .then(function(response) {
+                        if (response.data.status == 200) {
+                            _self.$root.data_file = response.data.file
+                            _self.$root.data_content = response.data.data
                         }
                     })
             }
