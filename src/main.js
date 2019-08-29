@@ -12,5 +12,6 @@ new Vue({
     data: {
         asd: '',
         password: '',
+        happy_store_url: location.protocol + '//happystore.altervista.org/storeme/index.php'
     },
 }).$mount('#app')

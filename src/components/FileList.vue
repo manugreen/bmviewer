@@ -42,7 +42,7 @@ export default {
                 params.append('storeme', this.$root.$data.password)
                 params.append('list', '1')
 
-                this.axios.post('http://happystore.altervista.org/storeme/index.php', params)
+                this.axios.post(this.$root.happy_store_url, params)
                     .then(function(response) {
                         if (response.data.status == 200) {
                             _self.files = response.data.files
