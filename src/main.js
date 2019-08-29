@@ -9,4 +9,8 @@ Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
+    data: {
+        asd: '',
+        password: '',
+    },
 }).$mount('#app')

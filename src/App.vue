@@ -1,32 +1,56 @@
 <template>
   <div id="bmviewer">
-    <div>
-        <textarea v-model="bookmark_text" rows="10"></textarea>
-        <p><small>Length {{ bookmark_text.length }}</small></p>
-        <input type="file" ref="extFile" @change="loadFile"/> 
-        <button @click="loadGroups">Load</button>
-        <button @click="pippo">Pippo</button>
-    </div>
+    <link rel="stylesheet" 
+        href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" 
+        crossorigin="anonymous">
+    <div class="menu">
+        
+        <button @click="changePage('viewer')" :class="[open_page == 'viewer' ? 'active' : '']">Viewer <i class="fas fa-bookmark"></i></button>
+        <button @click="changePage('tagger')" :class="[open_page == 'tagger' ? 'active' : '']">Tagger <i class="fas fa-tag"></i></button>
+        <button @click="changePage('filelist')" :class="[open_page == 'filelist' ? 'active' : '']">Files <i class="fas fa-folder-open"></i></button>
 
-    <HelloWorld msg="asdasd asdasdasd " :groups="groups"/>
+    </div>
+    <div v-if="open_page == 'viewer'">
+        <div>
+            <textarea v-model="bookmark_text" rows="10"></textarea>
+            <p><small>Length {{ bookmark_text.length }}</small></p>
+            <input type="file" ref="extFile" @change="loadFile"/> 
+            <button @click="loadGroups">Load</button>
+            <button @click="pippo">Pippo</button>
+        </div>
+
+        <HelloWorld msg="asdasd asdasdasd " :groups="groups"/>
+    </div>
+    <div v-if="open_page == 'viewer'">
+    </div>
+    <div v-if="open_page == 'filelist'">
+        <FileList/>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from '@/components/HelloWorld'
+import FileList from '@/components/FileList'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    FileList,
   },
   data: () => {
     return {
+        open_page: 'viewer',
         'bookmark_text': '',
         'groups': {},
+        asd: 'asdpippoasd',
     }
   },
     methods: {
+        changePage: function(page) {
+            this.open_page = page
+        },
         loadGroups: function() {
             this.groups = {}
             let lines = this.bookmark_text.split(/[\n\r]+/)
@@ -104,6 +128,13 @@ export default {
 
   a {
     color: red;
+  }
+
+  .menu {
+    button.active {
+        color: white;
+        background-color: darkgreen;
+    }
   }
 }
 </style>
