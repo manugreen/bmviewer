@@ -21,7 +21,8 @@
 
         <HelloWorld msg="asdasd asdasdasd " :groups="groups"/>
     </div>
-    <div v-if="open_page == 'viewer'">
+    <div v-if="open_page == 'tagger'">
+        <Tagger/>
     </div>
     <div v-if="open_page == 'filelist'">
         <FileList/>
@@ -32,11 +33,13 @@
 <script>
 import HelloWorld from '@/components/HelloWorld'
 import FileList from '@/components/FileList'
+import Tagger from '@/components/Tagger'
 
 export default {
   name: 'app',
   components: {
     HelloWorld,
+    Tagger,
     FileList,
   },
   data: () => {
